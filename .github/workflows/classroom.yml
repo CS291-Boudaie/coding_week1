@@ -64,7 +64,7 @@ jobs:
         setup-command: ''
         command: python -m unittest test_week1.CountClumps
         timeout: 1
-        max-score: 4
+        max-score: 20
     - name: Zero Matrix
       id: zero-matrix
       uses: classroom-resources/autograding-command-grader@v1
@@ -73,7 +73,7 @@ jobs:
         setup-command: ''
         command: python -m unittest test_week1.ZeroMatrix
         timeout: 1
-        max-score: 4
+        max-score: 20
     - name: Is Anagram
       id: is-anagram
       uses: classroom-resources/autograding-command-grader@v1
@@ -82,7 +82,7 @@ jobs:
         setup-command: ''
         command: python -m unittest test_week1.IsAnagram
         timeout: 1
-        max-score: 4
+        max-score: 20
     - name: Autograding Reporter
       uses: classroom-resources/autograding-grading-reporter@v1
       env:
