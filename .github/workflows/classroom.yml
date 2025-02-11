@@ -1,0 +1,98 @@
+name: Autograding Tests
+'on': {}
+permissions:
+  checks: write
+  actions: read
+  contents: read
+jobs:
+  run-autograding-tests:
+    runs-on: ubuntu-latest
+    if: github.actor != 'github-classroom[bot]'
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+    - name: Two Sum
+      id: two-sum
+      uses: classroom-resources/autograding-command-grader@v1
+      with:
+        test-name: Two Sum
+        setup-command: ''
+        command: python -m unittest test_week1.TwoSum
+        timeout: 1
+        max-score: 4
+    - name: FooBarBaz
+      id: foobarbaz
+      uses: classroom-resources/autograding-command-grader@v1
+      with:
+        test-name: FooBarBaz
+        setup-command: ''
+        command: python -m unittest test_week1.FooBarBaz
+        timeout: 1
+        max-score: 4
+    - name: Sentence Palindrome
+      id: sentence-palindrome
+      uses: classroom-resources/autograding-command-grader@v1
+      with:
+        test-name: Sentence Palindrome
+        setup-command: ''
+        command: python -m unittest test_week1.SentencePalindrome
+        timeout: 1
+        max-score: 4
+    - name: Dyslexic Palindrome
+      id: dyslexic-palindrome
+      uses: classroom-resources/autograding-command-grader@v1
+      with:
+        test-name: Dyslexic Palindrome
+        setup-command: ''
+        command: python -m unittest test_week1.DyslexicPalindrome
+        timeout: 1
+        max-score: 4
+    - name: Local Minimums
+      id: local-minimums
+      uses: classroom-resources/autograding-command-grader@v1
+      with:
+        test-name: Local Minimums
+        setup-command: ''
+        command: python -m unittest test_week1.LocalMinimums
+        timeout: 1
+        max-score: 4
+    - name: Count Clumps
+      id: count-clumps
+      uses: classroom-resources/autograding-command-grader@v1
+      with:
+        test-name: Count Clumps
+        setup-command: ''
+        command: python -m unittest test_week1.CountClumps
+        timeout: 1
+        max-score: 4
+    - name: Zero Matrix
+      id: zero-matrix
+      uses: classroom-resources/autograding-command-grader@v1
+      with:
+        test-name: Zero Matrix
+        setup-command: ''
+        command: python -m unittest test_week1.ZeroMatrix
+        timeout: 1
+        max-score: 4
+    - name: Is Anagram
+      id: is-anagram
+      uses: classroom-resources/autograding-command-grader@v1
+      with:
+        test-name: Is Anagram
+        setup-command: ''
+        command: python -m unittest test_week1.IsAnagram
+        timeout: 1
+        max-score: 4
+    - name: Autograding Reporter
+      uses: classroom-resources/autograding-grading-reporter@v1
+      env:
+        TWO-SUM_RESULTS: "${{steps.two-sum.outputs.result}}"
+        FOOBARBAZ_RESULTS: "${{steps.foobarbaz.outputs.result}}"
+        SENTENCE-PALINDROME_RESULTS: "${{steps.sentence-palindrome.outputs.result}}"
+        DYSLEXIC-PALINDROME_RESULTS: "${{steps.dyslexic-palindrome.outputs.result}}"
+        LOCAL-MINIMUMS_RESULTS: "${{steps.local-minimums.outputs.result}}"
+        COUNT-CLUMPS_RESULTS: "${{steps.count-clumps.outputs.result}}"
+        ZERO-MATRIX_RESULTS: "${{steps.zero-matrix.outputs.result}}"
+        IS-ANAGRAM_RESULTS: "${{steps.is-anagram.outputs.result}}"
+      with:
+        runners: two-sum,foobarbaz,sentence-palindrome,dyslexic-palindrome,local-minimums,count-clumps,zero-matrix,is-anagram
