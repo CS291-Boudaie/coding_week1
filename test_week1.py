@@ -15,7 +15,7 @@ class TwoSum(unittest.TestCase):
 
 class FooBarBaz(unittest.TestCase):
     def test_foobarbaz(self):
-        self.assertListEqual(week1.foobarbaz(10), [1, 2, 'foo', 4, 5, 'bar', 7, 8, 'baz', 10])
+        self.assertListEqual(week1.foobarbaz(10), ['1', '2', 'foo', '4', '5', 'bar', '7', '8', 'baz', '10'])
 
 class SentencePalindrome(unittest.TestCase):
     def test_sentence_palindrome(self):

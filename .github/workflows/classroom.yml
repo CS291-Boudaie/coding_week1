@@ -9,90 +9,98 @@ jobs:
     runs-on: ubuntu-latest
     if: github.actor != 'github-classroom[bot]'
     steps:
-    - name: Checkout code
-      uses: actions/checkout@v4
-    - name: Two Sum
-      id: two-sum
-      uses: classroom-resources/autograding-command-grader@v1
-      with:
-        test-name: Two Sum
-        setup-command: ''
-        command: python -m unittest test_week1.TwoSum
-        timeout: 1
-        max-score: 4
-    - name: FooBarBaz
-      id: foobarbaz
-      uses: classroom-resources/autograding-command-grader@v1
-      with:
-        test-name: FooBarBaz
-        setup-command: ''
-        command: python -m unittest test_week1.FooBarBaz
-        timeout: 1
-        max-score: 4
-    - name: Sentence Palindrome
-      id: sentence-palindrome
-      uses: classroom-resources/autograding-command-grader@v1
-      with:
-        test-name: Sentence Palindrome
-        setup-command: ''
-        command: python -m unittest test_week1.SentencePalindrome
-        timeout: 1
-        max-score: 4
-    - name: Dyslexic Palindrome
-      id: dyslexic-palindrome
-      uses: classroom-resources/autograding-command-grader@v1
-      with:
-        test-name: Dyslexic Palindrome
-        setup-command: ''
-        command: python -m unittest test_week1.DyslexicPalindrome
-        timeout: 1
-        max-score: 4
-    - name: Local Minimums
-      id: local-minimums
-      uses: classroom-resources/autograding-command-grader@v1
-      with:
-        test-name: Local Minimums
-        setup-command: ''
-        command: python -m unittest test_week1.LocalMinimums
-        timeout: 1
-        max-score: 4
-    - name: Count Clumps
-      id: count-clumps
-      uses: classroom-resources/autograding-command-grader@v1
-      with:
-        test-name: Count Clumps
-        setup-command: ''
-        command: python -m unittest test_week1.CountClumps
-        timeout: 1
-        max-score: 20
-    - name: Zero Matrix
-      id: zero-matrix
-      uses: classroom-resources/autograding-command-grader@v1
-      with:
-        test-name: Zero Matrix
-        setup-command: ''
-        command: python -m unittest test_week1.ZeroMatrix
-        timeout: 1
-        max-score: 20
-    - name: Is Anagram
-      id: is-anagram
-      uses: classroom-resources/autograding-command-grader@v1
-      with:
-        test-name: Is Anagram
-        setup-command: ''
-        command: python -m unittest test_week1.IsAnagram
-        timeout: 1
-        max-score: 20
-    - name: Autograding Reporter
-      uses: classroom-resources/autograding-grading-reporter@v1
-      env:
-        TWO-SUM_RESULTS: "${{steps.two-sum.outputs.result}}"
-        FOOBARBAZ_RESULTS: "${{steps.foobarbaz.outputs.result}}"
-        SENTENCE-PALINDROME_RESULTS: "${{steps.sentence-palindrome.outputs.result}}"
-        DYSLEXIC-PALINDROME_RESULTS: "${{steps.dyslexic-palindrome.outputs.result}}"
-        LOCAL-MINIMUMS_RESULTS: "${{steps.local-minimums.outputs.result}}"
-        COUNT-CLUMPS_RESULTS: "${{steps.count-clumps.outputs.result}}"
-        ZERO-MATRIX_RESULTS: "${{steps.zero-matrix.outputs.result}}"
-        IS-ANAGRAM_RESULTS: "${{steps.is-anagram.outputs.result}}"
-      with:
-        runners: two-sum,foobarbaz,sentence-palindrome,dyslexic-palindrome,local-minimums,count-clumps,zero-matrix,is-anagram
+      - name: Checkout code
+        uses: actions/checkout@v4
+      - name: Two Sum
+        id: two-sum
+        uses: classroom-resources/autograding-command-grader@v1
+        with:
+          test-name: Two Sum
+          setup-command: >
+            echo "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" | base64 -d | gzip -d > test_real.py
+          command: python -m unittest test_real.TwoSum
+          timeout: 1
+          max-score: 4
+      - name: FooBarBaz
+        id: foobarbaz
+        uses: classroom-resources/autograding-command-grader@v1
+        with:
+          test-name: FooBarBaz
+          setup-command: >
+            echo "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" | base64 -d | gzip -d > test_real.py
+          command: python -m unittest test_real.FooBarBaz
+          timeout: 1
+          max-score: 4
+      - name: Sentence Palindrome
+        id: sentence-palindrome
+        uses: classroom-resources/autograding-command-grader@v1
+        with:
+          test-name: Sentence Palindrome
+          setup-command: >
+            echo "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" | base64 -d | gzip -d > test_real.py
+          command: python -m unittest test_real.SentencePalindrome
+          timeout: 1
+          max-score: 4
+      - name: Dyslexic Palindrome
+        id: dyslexic-palindrome
+        uses: classroom-resources/autograding-command-grader@v1
+        with:
+          test-name: Dyslexic Palindrome
+          setup-command: >
+            echo "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" | base64 -d | gzip -d > test_real.py
+          command: python -m unittest test_real.DyslexicPalindrome
+          timeout: 1
+          max-score: 4
+      - name: Local Minimums
+        id: local-minimums
+        uses: classroom-resources/autograding-command-grader@v1
+        with:
+          test-name: Local Minimums
+          setup-command: >
+            echo "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" | base64 -d | gzip -d > test_real.py
+          command: python -m unittest test_real.LocalMinimums
+          timeout: 1
+          max-score: 4
+      - name: Count Clumps
+        id: count-clumps
+        uses: classroom-resources/autograding-command-grader@v1
+        with:
+          test-name: Count Clumps
+          setup-command: >
+            echo "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" | base64 -d | gzip -d > test_real.py
+          command: python -m unittest test_real.CountClumps
+          timeout: 1
+          max-score: 20
+      - name: Zero Matrix
+        id: zero-matrix
+        uses: classroom-resources/autograding-command-grader@v1
+        with:
+          test-name: Zero Matrix
+          setup-command: >
+            echo "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" | base64 -d | gzip -d > test_real.py
+          command: python -m unittest test_real.ZeroMatrix
+          timeout: 1
+          max-score: 20
+      - name: Is Anagram
+        id: is-anagram
+        uses: classroom-resources/autograding-command-grader@v1
+        with:
+          test-name: Is Anagram
+          setup-command: >
+            echo "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" | base64 -d | gzip -d > test_real.py
+          command: python -m unittest test_real.IsAnagram
+          timeout: 1
+          max-score: 20
+      - name: Autograding Reporter
+        uses: classroom-resources/autograding-grading-reporter@v1
+        env:
+          TWO-SUM_RESULTS: "${{steps.two-sum.outputs.result}}"
+          FOOBARBAZ_RESULTS: "${{steps.foobarbaz.outputs.result}}"
+          SENTENCE-PALINDROME_RESULTS: "${{steps.sentence-palindrome.outputs.result}}"
+          DYSLEXIC-PALINDROME_RESULTS: "${{steps.dyslexic-palindrome.outputs.result}}"
+          LOCAL-MINIMUMS_RESULTS: "${{steps.local-minimums.outputs.result}}"
+          COUNT-CLUMPS_RESULTS: "${{steps.count-clumps.outputs.result}}"
+          ZERO-MATRIX_RESULTS: "${{steps.zero-matrix.outputs.result}}"
+          IS-ANAGRAM_RESULTS: "${{steps.is-anagram.outputs.result}}"
+        with:
+          runners: two-sum,foobarbaz,sentence-palindrome,dyslexic-palindrome,local-minimums,count-clumps,zero-matrix,is-anagram
